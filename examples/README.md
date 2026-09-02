@@ -14,5 +14,4 @@ Additional material includes the near-to-far-field validation notebook and
 `run_absorbing_aperture_test.py`. The HPC launch
 examples are documented in [`HPC_Tutorial/README.md`](HPC_Tutorial/README.md).
 
-The spelling `auxilary_data` is retained temporarily for compatibility with
-existing notebooks and configurations.
+Supporting input files and reference datasets are stored in `auxiliary_data`.

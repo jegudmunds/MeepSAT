@@ -12,7 +12,7 @@ So we are going to run this example via the approach mentioned in the [HPC_Tutor
 
 In this Tutorial, we are going to 
 
-- First we define the simulation parameters in `auxilary_data/02_SPIDER2/SPIDER2.json`. 
+- First we define the simulation parameters in `auxiliary_data/02_SPIDER2/SPIDER2.json`. 
 - Similar to the approach mentioned in the previous tutorial for the single lens system, we write a python script for defining the geometry and running the simulation in `examples/HPC_Tutorial/time-reverse/02_SPIDER2/sim_files/SPIDER2.py`. 
 - Finally we define a bash script file for running the time-reverse simulation in `examples/HPC_Tutorial/time-reverse/02_SPIDER2/sim_files/SPIDER2.sh`.
 

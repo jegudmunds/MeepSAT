@@ -38,11 +38,11 @@ import meepsat.field_analysis as mpsat_analysis
 import meepsat.helpers as mpsat_helpers
 
 # JSON file path representing mainly the different optical components parameters
-json_file_path = 'auxilary_data/simple_single_lens_ARC/simple_single_lens_ARC.json'
+json_file_path = 'auxiliary_data/simple_single_lens_ARC/simple_single_lens_ARC.json'
 data = mpsat_helpers.read_json(json_file_path)
 
 # Savepath: For storing the output generated during the simulation
-savepath = 'auxilary_data/simple_single_lens_ARC/output_files'
+savepath = 'auxiliary_data/simple_single_lens_ARC/output_files'
 os.makedirs(savepath, exist_ok=True)
 ```
 

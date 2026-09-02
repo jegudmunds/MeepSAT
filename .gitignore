@@ -41,8 +41,8 @@ __pycache__/
 !docs/images/**/*.png
 
 # Exception
-!examples/auxilary_data/04_3lens_system_noARC/schematic_3lens.jpg
+!examples/auxiliary_data/04_3lens_system_noARC/schematic_3lens.jpg
 
 # Add the CST and GRASP data for the simple single lens ARC example 
-!examples/auxilary_data/01_simple_single_lens_ARC/CST_data/**
-!examples/auxilary_data/01_simple_single_lens_ARC/GRASP_data/**
+!examples/auxiliary_data/01_simple_single_lens_ARC/CST_data/**
+!examples/auxiliary_data/01_simple_single_lens_ARC/GRASP_data/**

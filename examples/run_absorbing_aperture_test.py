@@ -25,7 +25,7 @@ import meepsat.json_to_script as json_to_script
 import meepsat.field_analysis as analysis
 import meepsat.helpers as mpsat_helpers
 
-json_file_path = 'auxilary_data/01_simple_single_lens_ARC/simple_single_lens_ARC_absorbing_aperture.json'
+json_file_path = 'auxiliary_data/01_simple_single_lens_ARC/simple_single_lens_ARC_absorbing_aperture.json'
 data = mpsat_helpers.read_json(json_file_path)
 
 c_mm_s = 299792458.0 * 1000.0
@@ -39,7 +39,7 @@ beam_waist = 1.1660
 data["sources"]["source1"]["frequecy"] = freq_meep
 data["sources"]["source1"]["extra_args"]["width"] = beam_waist
 
-savepath = os.path.abspath(f'auxilary_data/01_simple_single_lens_ARC/output_files/{freq}GHz_absorbing_aperture')
+savepath = os.path.abspath(f'auxiliary_data/01_simple_single_lens_ARC/output_files/{freq}GHz_absorbing_aperture')
 os.makedirs(savepath, exist_ok=True)
 data["output"]["savepath"]["path"] = savepath + os.sep
 
