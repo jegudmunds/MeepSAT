@@ -1,9 +1,3 @@
-## Running the examples
-
-The executable notebooks locate the `examples/` directory when launched from
-either the repository root or this directory. Output is written below
-`examples/auxilary_data/` and is ignored by Git.
-
 ## Suggested sequence
 
     01_simple_single_ARC 

@@ -14,8 +14,6 @@ output is touched.
 """
 import os
 import json
-from pathlib import Path
-
 import numpy as np
 import meep as mp
 
@@ -26,9 +24,6 @@ import meepsat.stepfunctions as stepfunctions
 import meepsat.json_to_script as json_to_script
 import meepsat.field_analysis as analysis
 import meepsat.helpers as mpsat_helpers
-
-EXAMPLES_DIR = Path(__file__).resolve().parent
-os.chdir(EXAMPLES_DIR)
 
 json_file_path = 'auxilary_data/01_simple_single_lens_ARC/simple_single_lens_ARC_absorbing_aperture.json'
 data = mpsat_helpers.read_json(json_file_path)
