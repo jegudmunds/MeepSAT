@@ -110,7 +110,6 @@ MeepSAT/
 ├── examples/                 # notebooks, scripts, and example inputs
 ├── doc/meepsat_docs/         # MkDocs documentation source
 ├── tests/                    # lightweight unit tests
-├── manuscript/               # manuscript material
 ├── pyproject.toml            # package metadata and dependencies
 └── README.md                 # project overview and installation guide
 ```
