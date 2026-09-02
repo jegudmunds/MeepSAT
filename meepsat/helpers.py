@@ -1,8 +1,7 @@
-import sys
-import os
-import site
-from pathlib import Path
+import inspect
+import json
 from typing import Callable
+
 import numpy as np
 
 # Used to remove the elements of a dictionary (dict_to_filter) that
@@ -20,16 +19,11 @@ def filter_dict(dict_to_filter: dict, func_with_kwargs: Callable) -> dict:
     Raises:
         TypeError: If func_with_kwargs is not a callable.
     """
-    import inspect
+    if not callable(func_with_kwargs):
+        raise TypeError("func_with_kwargs must be callable")
 
-    filter_keys = []
-    try:
-        # Python3 ...
-        sig = inspect.signature(func_with_kwargs)
-        filter_keys = [param.name for param in sig.parameters.values()]
-    except:
-        # Python2 ...
-        filter_keys = inspect.getargspec(func_with_kwargs)[0]
+    sig = inspect.signature(func_with_kwargs)
+    filter_keys = [param.name for param in sig.parameters.values()]
 
     filtered_dict = {
         filter_key: dict_to_filter[filter_key]
@@ -43,7 +37,8 @@ def extract_ticks(data, num_ticks, sim_box):
     """
     Generate tick positions and labels for a given simulation box.
     Parameters:
-    data (array-like): The data to be plotted (not used in the current implementation).
+    data (array-like): The data to be plotted (currently unused).
+    num_ticks (int): Number of ticks to generate on each axis.
     sim_box (list of tuples): A list containing two tuples, each representing the 
                               start and end points of the simulation box in the x 
                               and y directions, respectively. 
@@ -123,10 +118,8 @@ def read_json(json_file):
     Returns:
         dict: The data from the JSON file.
     """
-    import json
-    with open(json_file, "r") as f:
-        data = json.load(f)
-    return data
+    with open(json_file, "r", encoding="utf-8") as file:
+        return json.load(file)
 
 
 def rot_x(theta):

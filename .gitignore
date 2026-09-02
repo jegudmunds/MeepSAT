@@ -25,6 +25,8 @@ processed_data/
 
 # Ignore pycache, ipynb checkpoints, vscode settings
 __pycache__/
+.pytest_cache/
+.coverage
 .ipynb_checkpoints/
 *.cpython-*.pyc
 .vscode/

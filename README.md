@@ -90,44 +90,27 @@ Due to the complex dependencies of the MEEP FDTD software, it is highly recommen
     print("Functions in meepsat.field_analysis:")
     print([name for name in dir(meepsat.field_analysis) if not name.startswith('_')])
 
-    print("\nFunctions in meepsat.meep_goemetry:")
-    print([name for name in dir(meepsat.meep_goemetry) if not name.startswith('_')])
+    print("\nFunctions in meepsat.meep_geometry:")
+    print([name for name in dir(meepsat.meep_geometry) if not name.startswith('_')])
 
     ```
 
     If you are getting an output with all the functions in the various modules of MeepSAT, then you are all set to do some FDTD sims!!
 
-### Repository Struture
-    ```
-    MeepSAT/
-    ├── README.md                               # overview of the project
-    ├── pyproject.toml                          # for initial Installation through pip 
-    ├── data/                                   # data files used in the project
-    │   ├── README.md                           # describes data from different references/softwares
-    │   └── sub-directory/                      # may contain subdirectories
-    ├── processed_data/                         # important files/data resulted from the analysis of the sims
-    ├── manuscript/                             # manuscript of MeepSAT in latex doc
-    ├── results/                                # results of the analysis (data, tables, figures)
-    ├── info/                                   # contains all code related information in the project
-    │   ├── LICENSE                             # license for the code
-    │   ├── requirements.txt                    # code requirements and dependencies
-    │   └── ...
-    └── MeepSAT
-        ├── bash_scripts/                       # Contains different bash scripts for future development purposes
-                ├── json_to_MeepSAT_script.sh/  # This script takes a json file and directly outputs the required  python script you    need (something planned for the future)
-        ├── __init__.py                         # Initialisation file
-        └── field_analysis.py                   # Analysis functions for both post and during simulations
-        └── simulation_2D.py                    # MeepSAT's simulator object and its corresponding functions
-        └── json_to_script.py                   # Functionalities to read the json component file and output the required python script 
-        └── meep_goemetry.py                    # Different components of the Telescope creating using the basic MEEP objects
-        └── permittivity_components.py          # Different complex components of the telescope created for the `input_epsilon_file` parameter in MEEP.Simulation()
-        └── simulator.py                        # MeepSAT Simulator intialisation
-        └── stepfunctions.py                    # Different utilities (such as animation, time-averaged field extraction etc) needed during the simulation
-    └── examples
-        ├── project-directory/                  # Contains different example projects
-                ├── sim_files/
-                ├── output_files/
-    └── doc/                                    # Directory for the ReadTheDocs documentation
-        ├── index.rst
-        └── ...
-    ```
+### Repository Structure
+
+```text
+MeepSAT/
+├── meepsat/                  # Python package
+│   ├── field_analysis.py     # field analysis and visualization
+│   ├── meep_geometry.py      # telescope geometry components
+│   ├── meshing.py            # triangular-mesh utilities
+│   ├── simulator.py          # simulation initialization
+│   └── stepfunctions.py      # callbacks used during simulations
+├── examples/                 # notebooks, scripts, and example inputs
+├── doc/meepsat_docs/         # MkDocs documentation source
+├── tests/                    # lightweight unit tests
+├── manuscript/               # manuscript material
+├── pyproject.toml            # package metadata and dependencies
+└── README.md                 # project overview and installation guide
+```
