@@ -3046,48 +3046,24 @@ class FlairComponent(ForebaffleComponent):
         # else:
         #     raise ValueError("Invalid rotation axis. Must be 'x' or 'y'.")
 
-        angle_rad = math.radians(theta2) if isinstance(theta2, (int, float)) else theta2
-        
-        if theta2_axis == 'x':
-            offset_x = length/2 * math.cos(angle_rad)
-            offset_y = length/2 * math.sin(angle_rad)
-        elif theta2_axis == 'y':
-            offset_x = length/2 * math.sin(angle_rad)
-            offset_y = length/2 * math.cos(angle_rad)
-
-        if theta2<=90:
-            offset_vertex_x = thickness/2 * math.cos(90)
-            offset_vertex_y = thickness/2 * math.sin(90)
-            
-            new_vertex = vertex
-            new_vertex.x = vertex.x - offset_vertex_x
-            new_vertex.y = vertex.y - offset_vertex_y
-            
-            x_center = new_vertex.x + offset_x -unit_pixel_length 
-            y_center = new_vertex.y + offset_y -unit_pixel_length
-
-        elif 90< theta2 < 180:
-            offset_vertex_x = thickness/2 * -math.cos(90)
-            offset_vertex_y = thickness/2 * math.sin(90)
-            
-            new_vertex = vertex
-            new_vertex.x = vertex.x - offset_vertex_x
-            new_vertex.y = vertex.y - offset_vertex_y
-
-            x_center = new_vertex.x + offset_x +unit_pixel_length
-            y_center = new_vertex.y + offset_y +unit_pixel_length
+        x_center, y_center = exf.linear_flair_center(
+            vertex_x=vertex.x,
+            vertex_y=vertex.y,
+            length=length,
+            thickness=thickness,
+            angle_degrees=theta2,
+            angle_axis=theta2_axis,
+            unit_pixel_length=unit_pixel_length,
+        )
 
         # x_center = vertex.x + offset_x +unit_pixel_length 
         # y_center = vertex.y + offset_y +unit_pixel_length
-        # Use meep_block from
-        import meepsat.meep_geometry as mpsat_geom
-
         # x_center, y_center = x_center - thickness, y_center #- thickness
-        flair_block_meep = mpsat_geom.meep_block(size = mp.Vector3(length, thickness, 0),
-                                                 center = mp.Vector3(x_center, y_center, 0),
-                                                 material = flair_material,
-                                                 angle= theta2,
-                                                 rot_axis= 'z') # This will be always Z
+        flair_block_meep = meep_block(size = mp.Vector3(length, thickness, 0),
+                                      center = mp.Vector3(x_center, y_center, 0),
+                                      material = flair_material,
+                                      angle= theta2,
+                                      rot_axis= 'z') # This will be always Z
 
         return flair_block_meep
     
