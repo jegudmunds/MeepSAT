@@ -6,6 +6,7 @@ import pytest
 from meepsat.helpers import (
     extract_ticks,
     filter_dict,
+    linear_flair_center,
     read_json,
     rot_x,
     rot_y,
@@ -58,3 +59,46 @@ def test_read_json(tmp_path):
     path.write_text(json.dumps(expected), encoding="utf-8")
 
     assert read_json(path) == expected
+
+
+@pytest.mark.parametrize(
+    ("angle_degrees", "expected"),
+    [
+        (60, (2.4, 2.5 + 2 * np.sin(np.radians(60)) - 0.1)),
+        (120, (0.6, 2.5 + 2 * np.sin(np.radians(120)) + 0.1)),
+    ],
+)
+def test_linear_flair_center_across_90_degrees(angle_degrees, expected):
+    center = linear_flair_center(
+        vertex_x=1.5,
+        vertex_y=3.0,
+        length=4.0,
+        thickness=1.0,
+        angle_degrees=angle_degrees,
+        angle_axis="x",
+        unit_pixel_length=0.1,
+    )
+
+    np.testing.assert_allclose(center, expected)
+
+
+def test_linear_flair_center_does_not_modify_vertex_coordinates():
+    vertex = [1.5, 3.0]
+
+    linear_flair_center(
+        vertex_x=vertex[0],
+        vertex_y=vertex[1],
+        length=4.0,
+        thickness=1.0,
+        angle_degrees=60,
+        angle_axis="y",
+        unit_pixel_length=0.1,
+    )
+
+    assert vertex == [1.5, 3.0]
+
+
+@pytest.mark.parametrize("angle_axis", ["z", "invalid"])
+def test_linear_flair_center_rejects_invalid_axis(angle_axis):
+    with pytest.raises(ValueError, match="Invalid rotation axis"):
+        linear_flair_center(0, 0, 1, 1, 45, angle_axis, 0.1)
