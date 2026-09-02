@@ -1,8 +1,41 @@
 import inspect
 import json
+import math
 from typing import Callable
 
 import numpy as np
+
+
+def linear_flair_center(vertex_x, vertex_y, length, thickness, angle_degrees,
+                        angle_axis, unit_pixel_length):
+    """Return the centre of a linear forebaffle flair without mutating its vertex.
+
+    ``angle_degrees`` follows the degree convention used by the forebaffle JSON
+    configuration and by ``meep_block``.
+    """
+    if not 0 <= angle_degrees < 180:
+        raise ValueError("Flair angle must be in the range [0, 180) degrees.")
+
+    angle_radians = math.radians(angle_degrees)
+    if angle_axis == "x":
+        length_offset_x = length / 2 * math.cos(angle_radians)
+        length_offset_y = length / 2 * math.sin(angle_radians)
+    elif angle_axis == "y":
+        length_offset_x = length / 2 * math.sin(angle_radians)
+        length_offset_y = length / 2 * math.cos(angle_radians)
+    else:
+        raise ValueError("Invalid rotation axis. Must be 'x' or 'y'.")
+
+    # The flair centre is displaced half a thickness below its attachment
+    # vertex. This is an exact 90-degree offset; no trigonometry is needed.
+    attachment_x = vertex_x
+    attachment_y = vertex_y - thickness / 2
+    pixel_offset = -unit_pixel_length if angle_degrees <= 90 else unit_pixel_length
+
+    return (
+        attachment_x + length_offset_x + pixel_offset,
+        attachment_y + length_offset_y + pixel_offset,
+    )
 
 # Used to remove the elements of a dictionary (dict_to_filter) that
 # don't correspond to the keyword arguments of a particular
