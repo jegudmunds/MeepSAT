@@ -1,4 +1,10 @@
-Flow of the examples:
+## Running the examples
+
+The executable notebooks locate the `examples/` directory when launched from
+either the repository root or this directory. Output is written below
+`examples/auxilary_data/` and is ignored by Git.
+
+## Suggested sequence
 
     01_simple_single_ARC 
 
@@ -14,3 +20,9 @@ Flow of the examples:
 
     04_3lens_system_noARC
 
+Additional material includes the near-to-far-field validation notebook, the
+no-baffles comparison, and `run_absorbing_aperture_test.py`. The HPC launch
+examples are documented in [`HPC_Tutorial/README.md`](HPC_Tutorial/README.md).
+
+The spelling `auxilary_data` is retained temporarily for compatibility with
+existing notebooks and configurations.

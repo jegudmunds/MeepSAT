@@ -1,23 +1,28 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
 
 #==============================================================================
 #~ For MEEPSAT simulations ON your local machine
-source ~/.bashrc
-source $(conda info --base)/etc/profile.d/conda.sh
-conda activate parallel_meep # Change this according to your conda environment name
+MEEPSAT_CONDA_ENV="${MEEPSAT_CONDA_ENV:-parallel_meep}"
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate "$MEEPSAT_CONDA_ENV"
 #==============================================================================
 
-python_script_file_name=simple_single_lens_ARC
+python_script_file_name="simple_single_lens_ARC"
 
 # file name
-file_name=${python_script_file_name}
+file_name="$python_script_file_name"
 
 # output directory + file
-base_output_dir=../output_files
+base_output_dir="../output_files"
 mkdir -p "$base_output_dir"
 
 # JSON file path
-json_file_path=./simple_single_lens_ARC.json
+json_file_path="./simple_single_lens_ARC.json"
 
 # Define resolution range
 resolutions=(12) #20)  # Add your desired resolutions here
@@ -35,12 +40,11 @@ for res in "${resolutions[@]}"; do
         freq=${freqs[$i]}
         waist=${beam_waist[$i]}
         real_freq_ghz=$(echo "scale=6; $freq * 300" | bc -l)
-        freq_dir_name=$(printf "freq_%.1fGHz" $real_freq_ghz)
+        freq_dir_name=$(printf "freq_%.1fGHz" "$real_freq_ghz")
         
         output_dir="${base_output_dir}/${freq_dir_name}/"
         mkdir -p "$output_dir"
-        python $file_name.py $json_file_path $freq $res $output_dir $runtime $waist > $output_dir/$file_name.out 2> $output_dir/$file_name.err
-        # mpirun -np 2 python $file_name.py $json_file_path $freq $res $output_dir $runtime $waist > $output_dir/$file_name.out 2> $output_dir/$file_name.err
+        python "$file_name.py" "$json_file_path" "$freq" "$res" "$output_dir" "$runtime" "$waist" > "$output_dir/$file_name.out" 2> "$output_dir/$file_name.err"
+        # mpirun -np 2 python "$file_name.py" "$json_file_path" "$freq" "$res" "$output_dir" "$runtime" "$waist"
     done
 done
-
