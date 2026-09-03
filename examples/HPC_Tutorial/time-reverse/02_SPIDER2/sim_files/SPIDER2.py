@@ -115,7 +115,7 @@ sim.plot_and_save_epsilon(
 
 # Set the stepfunctions parameters
 # Animation Parameters
-stepfunctions.set_animation_params(anim_params= {'image_every': data["output"]["animation_options"]["image_every"], 
+stepfunctions.set_animation_params(anim_params= {'image_every': data["output"]["animation_options"]["image_every"],
                                               'Nfps': data["output"]["animation_options"]["Nfps"], 
                                               'anim_file_name': savepath + "/"+ data["output"]["animation_options"]["movie_name"] + ".mp4"})
 # Field Parameters
@@ -123,7 +123,8 @@ stepfunctions.set_field_params(field_params= {'size_x': size_x,
                                               'size_y': size_y,
                                               'savepath': savepath,
                                               'downsampling_factor_x': data["output"]["animation_options"]["downsample_x"],
-                                              'downsampling_factor_y': data["output"]["animation_options"]["downsample_y"]})
+                                              'downsampling_factor_y': data["output"]["animation_options"]["downsample_y"],
+                                              'method': 'dft'})
 
 # Runtime parameters
 runtime_params = sim.calculate_runtime_parameters(
@@ -135,10 +136,12 @@ runtime_params = sim.calculate_runtime_parameters(
 )
 
 
+stepfunctions.setup_dft_fields(
+    simulation, freq=float(data["sources"]["source1"]["frequecy"]))
 simulation.run(mp.at_every(runtime_params["animation_timestep"], stepfunctions.Ez2_dB),
-               mp.after_time(runtime_params["t0"], mp.at_every(runtime_params["dt"], stepfunctions.accumulate_efield_and_hfield)),
+               mp.after_time(runtime_params["t0"], mp.at_every(runtime_params["dt"], stepfunctions.count_dft_sample)),
                mp.at_end(stepfunctions.save_animation),
-               mp.at_end(stepfunctions.save_accumulated_fields),
+               mp.at_end(stepfunctions.save_dft_fields),
                mp.at_end(stepfunctions.extract_xyzw),
                until = runtime_params["total_time"])
 
@@ -150,5 +153,3 @@ print("Simulation completed.")
 with open(data["output"]["savepath"]["path"] + data["simulation"]["name"] + "_simulation_data.json", "w") as f:
     json.dump(data, f, indent=2)
 print(f"Simulation parameters saved to: {data['output']['savepath']['path']}{data['simulation']['name']}_simulation_data.json")
-
-

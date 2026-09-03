@@ -4,6 +4,10 @@ Modern day observations of the cosmic microwave background (CMB) require detaile
 
 The main goal of MeepSAT is to support the CMB community in the design and characterization of current and future-generation telescopes by providing a complementary modeling approach to established techniques such as physical optics, geometrical optics, and the method of moments. FDTD simulations can help probe systematic effects that are difficult to characterize using existing industry-standard software, particularly in cases involving complex geometries, lossy dielectric structures, absorber tiles, anti-reflection coatings, thermally induced deformations, detector loading, specular reflections, and optical ghosting.
 
+
+![Three-lens MeepSAT simulation](./examples/auxiliary_data/04_3lens_system_ARC/forebaffles_angle_length_TFWD_offaxis_sims_animation_Ez2_electric_field_power_anim_f150_angle_17.0_hypotenuse_800_i0.gif)
+
+
 ## Getting Started
 
 ### ReadTheDocs Documentation
