@@ -1,6 +1,6 @@
 {
     "simulation": {
-      "name": "simple_single_lens_AddedComplexities_TRV_b",
+      "name": "simple_single_lens_AddedComplexities_TFWD_b",
       "parallel": "False",
       "primary_params": {
         "sim_type": "2D",
@@ -27,34 +27,27 @@
     },
     
     "sources": {
-        "source1": {
-            "type": "GaussianBeam",
-            "center_x": 135,
-            "center_y": 0,
-            "center_z": 0,
-            "size_x": 0,
-            "size_y": 250,
-            "size_z": 0,
-            "component": "Ez",
-            "frequecy": 0.5,
-            "extra_args": {
-              "start_time": 0,
-              "end_time": "mp.inf",
-              "angle": 180,
-              "width": 7.08, 
-              "beam_x0": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                  },
-              "beam_E0": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 1
-                  }
-            }
-        }
-    },
+      "source1": {
+          "type": "ContinuousPlaneWaves",
+          "center_x": -210,
+          "center_y": 0,
+          "center_z": 0,
+          "size_x": 0,
+          "size_y": 250,
+          "size_z": 0,
+          "component": "Ez",
+          "frequency": 0.5003461427972281,
+          "extra_args": {
+          "angle": 0,
+          "is_integrated": true,
+          "start_time": 0,
+          "end_time": "mp.inf",
+          "rot_axis": "x",
+          "amplitude": 3
+          }
+      }
+  },
+
     "lenses": {
       "lens1": {
         "name": "L1",
@@ -107,7 +100,7 @@
         "Nfps": 12,
         "downsample_x": 1,
         "downsample_y": 1,
-        "movie_name": "simple_single_lens_AddedComplexities_TRV_b",
+        "movie_name": "simple_single_lens_AddedComplexities_TFWD_b",
         "plotting_params": {
                 "Ez2_dB": {
                   "title": "Power (dB)",
@@ -123,7 +116,7 @@
               }
       },
       "epsilon_h5_file": {
-        "filename": "simple_single_lens_AddedComplexities_TRV_b"
+        "filename": "simple_single_lens_AddedComplexities_TFWD_b"
       },
       "runtime": {
         "command": "until= 2500"

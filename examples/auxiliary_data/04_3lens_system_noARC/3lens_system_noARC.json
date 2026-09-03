@@ -1,6 +1,6 @@
 {
     "simulation": {
-      "name": "3lens_system_ARC",
+      "name": "3lens_system_noARC",
       "parallel": "False",
       "primary_params": {
         "sim_type": "2D",
@@ -37,7 +37,7 @@
             "size_y": 300,
             "size_z": 0,
             "component": "Ez",
-            "frequecy": 0.3,
+            "frequency": 0.3,
             "extra_args": {
             "start_time": 0,
             "end_time": "mp.inf",
@@ -61,7 +61,7 @@
       "aperture1": {
         "type": "square",
         "diameter": 220,
-        "pos_x": 1055,
+        "pos_x": 240,
         "thickness": 2,
         "material": "mp.perfect_electric_conductor",
         "conductivity": "mp.inf"
@@ -69,8 +69,8 @@
       "lens1_AL_mounting": {
         "type": "square",
         "diameter": 249.392,
-        "pos_x": 1050,
-        "thickness": 1,
+        "pos_x": 235,
+        "thickness": 2,
         "material": "mp.perfect_electric_conductor",
         "conductivity": "mp.inf",
         "y_centre_offset": [0, 0],
@@ -79,8 +79,8 @@
       "lens2_AL_mounting": {
         "type": "square",
         "diameter": 236.322,
-        "pos_x": 1280,
-        "thickness": 1,
+        "pos_x": 465,
+        "thickness": 2,
         "material": "mp.perfect_electric_conductor",
         "conductivity": "mp.inf",
         "y_centre_offset": [0, 0],
@@ -89,8 +89,8 @@
       "lens3_AL_mounting": {
         "type": "square",
         "diameter": 266.52,
-        "pos_x": 1450,
-        "thickness": 1,
+        "pos_x": 635,
+        "thickness": 2,
         "material": "mp.perfect_electric_conductor",
         "conductivity": "mp.inf",
         "y_centre_offset": [0, 0],
@@ -107,11 +107,7 @@
         "c2": 0,
         "thick": 31.327,
         "diameter": 249.392,
-        "x": 1016.38,
-        "AR_left_layers": [0.41],
-        "AR_right_layers": [0.41],
-        "AR_left_materials": [1.23],
-        "AR_right_materials": [1.23]
+        "x": 1016.38
       },
       "lens2": {
         "name": "L2",
@@ -122,11 +118,7 @@
         "c2": 0,
         "thick": 10.00,
         "diameter": 236.322,
-        "x": 1270,
-        "AR_left_layers": [0.41],
-        "AR_right_layers": [0.41],
-        "AR_left_materials": [1.23],
-        "AR_right_materials": [1.23]
+        "x": 1270
       },
       "lens3": {
         "name": "L3",
@@ -137,11 +129,7 @@
         "c2": 0,
         "thick": 38.091,
         "diameter": 266.52,
-        "x": 1410,
-        "AR_left_layers": [0.41],
-        "AR_right_layers": [0.41],
-        "AR_left_materials": [1.23],
-        "AR_right_materials": [1.23]
+        "x": 1410
       }
     },
     "detectors": {
@@ -164,7 +152,7 @@
         "Nfps": 12,
         "downsample_x": 10,
         "downsample_y": 10,
-        "movie_name": "3lens_system_ARC",
+        "movie_name": "3lens_system_noARC",
         "plotting_params": {
                 "Ez2_dB": {
                   "title": "Power (dB)",
@@ -180,7 +168,7 @@
               }
       },
       "epsilon_h5_file": {
-        "filename": "3lens_system_ARC"
+        "filename": "3lens_system_noARC"
       },
       "runtime": {
         "command": "until= 2500"

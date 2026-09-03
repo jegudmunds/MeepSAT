@@ -1,15 +1,15 @@
 {
     "simulation": {
-      "name": "single_lens_testing_ARC",
+      "name": "simple_single_lens_AddedComplexities_TRV_b",
       "parallel": "False",
       "primary_params": {
         "sim_type": "2D",
         "cell_size": {
-          "x": 160,
-          "y": 54,
+          "x": 500,
+          "y": 250,
           "z": 0
         },
-        "resolution": 8,
+        "resolution": 4,
         "smallest_freq": 0.25
       } 
     },
@@ -21,22 +21,22 @@
     "boundary_layers": {
       "boundary": {
         "type": "PML",
-        "size": 2,
-        "factor_dpml": 1
+        "size": 2.2,
+        "factor_dpml": 2
       }
     },
     
     "sources": {
         "source1": {
             "type": "GaussianBeam",
-            "center_x": 73,
+            "center_x": 200,
             "center_y": 0,
             "center_z": 0,
             "size_x": 0,
-            "size_y": 50,
+            "size_y": 250,
             "size_z": 0,
             "component": "Ez",
-            "frequecy": 0.5,
+            "frequency": 0.5003461427972281,
             "extra_args": {
               "start_time": 0,
               "end_time": "mp.inf",
@@ -65,7 +65,7 @@
         "c2": -2.325625,
         "thick": 8,
         "diameter": 50,
-        "x": 30,
+        "x": 322,
         "y": 0,
         "AR_left_layers": [0.51],
         "AR_right_layers": [0.51],
@@ -75,20 +75,20 @@
     },
 
     "apertures": {
-          "lens1_mount": {
+          "aperture1": {
             "type": "square",
             "diameter": 50,
-            "pos_x": -49,
+            "pos_x": 62,
             "thickness": 1,
             "material": "mp.perfect_electric_conductor",
             "conductivity": "mp.inf",
             "y_centre_offset": [0, 0],
             "y_size_offset": [0, 0]
           },
-          "aperture1": {
+           "lens1_mount": {
             "type": "square",
-            "diameter": 45,
-            "pos_x": -60,
+            "diameter": 50,
+            "pos_x": 74,
             "thickness": 1,
             "material": "mp.perfect_electric_conductor",
             "conductivity": "mp.inf",
@@ -107,7 +107,7 @@
         "Nfps": 12,
         "downsample_x": 1,
         "downsample_y": 1,
-        "movie_name": "single_lens_testing_ARC",
+        "movie_name": "simple_single_lens_AddedComplexities_TRV_b",
         "plotting_params": {
                 "Ez2_dB": {
                   "title": "Power (dB)",
@@ -123,7 +123,7 @@
               }
       },
       "epsilon_h5_file": {
-        "filename": "single_lens_testing_ARC"
+        "filename": "simple_single_lens_AddedComplexities_TRV_b"
       },
       "runtime": {
         "command": "until= 2500"

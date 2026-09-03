@@ -25,7 +25,7 @@ data = mpsat_helpers.read_json(json_file_path)
 
 #! Add more parameteters to twick if needed
 source_freq, res, savepath_dir, runtime, beam_waist = sys.argv[2], sys.argv[3], sys.argv[4], float(sys.argv[5]), float(sys.argv[6])
-data["sources"]['source1']["frequecy"] = float(source_freq)
+data["sources"]['source1']["frequency"] = float(source_freq)
 data["simulation"]['primary_params']['resolution'] = int(res)
 data["output"]["savepath"]["path"] = str(Path(savepath_dir)) + "/" 
 # Update the beam waist for the source in the JSON data
@@ -149,7 +149,7 @@ stepfunctions_old.set_field_params(field_params= {'size_x': size_x,
 
 #! Runtime parameters
 runtime_params = sim.calculate_runtime_parameters(
-    source_freq=float(data["sources"]["source1"]["frequecy"]),
+    source_freq=float(data["sources"]["source1"]["frequency"]),
     total_time= runtime,
     animation_timestep = data["output"]["animation_options"]["image_every"],
     points_per_period=10,

@@ -1952,7 +1952,7 @@ class FeedHorn(object):
         #                                  top_width = 0.5,
         #                                  epsilon_real = 5.4,
         #                                  epsilon_imag = 0.8,
-        #                                  freq = data["sources"]["source1"]["frequecy"],
+        #                                  freq = data["sources"]["source1"]["frequency"],
         #                                  add_substrate=True,
         #                                  substrate_thickness=7,#p,
         #                                  substrate_material=None, # If None, then it will be same as the absorber material

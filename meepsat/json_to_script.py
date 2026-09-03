@@ -159,7 +159,7 @@ gaussian_source_init = comp_meep.GaussianBeam(mpsat_sim=mpsat_sim,
                                                               {source_data["size_y"]},
                                                               {source_data["size_z"]}),
                                               component= '{source_data["component"]}',
-                                              freq= {source_data["frequecy"]},
+                                              freq= {source_data["frequency"]},
                                               angle= {source_data["extra_args"]["angle"]},
                                               width= {source_data["extra_args"]["width"]},
                                               kwargs= {{'beam_x0': mp.Vector3({source_data["extra_args"]["beam_x0"]["x"]},
@@ -185,7 +185,7 @@ cpw_source_init = comp_meep.ContinuousPlaneWaves(mpsat_sim=mpsat_sim,
                                                                 {data["size_y"]},
                                                                 {data["size_z"]}),
                                                 component= '{data["component"]}',
-                                                freq= {data["frequecy"]},
+                                                freq= {data["frequency"]},
                                                 angle= {data["extra_args"]["angle"]},
                                                 rot_axis= '{data["extra_args"].get("rot_axis", "z")}',
                                                 kwargs= {{"is_integrated": {data["extra_args"]["is_integrated"]},
@@ -552,8 +552,8 @@ def add_absorbers(data):
                 print(f"Absorber frequency found: {absorber_data['freq']}")
                 params["freq"] = convert_string_to_object_reference(absorber_data["freq"], "freq")
             else:
-                print(f"No frequency specified for absorber, using the current source frequency: {data['sources']['source1']['frequecy']}")
-                params["freq"] = data["sources"]["source1"]["frequecy"]
+                print(f"No frequency specified for absorber, using the current source frequency: {data['sources']['source1']['frequency']}")
+                params["freq"] = data["sources"]["source1"]["frequency"]
 
             
             script += f"""

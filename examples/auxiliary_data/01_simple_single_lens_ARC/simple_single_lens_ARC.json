@@ -1,15 +1,15 @@
 {
     "simulation": {
-      "name": "simple_single_lens_AddedComplexities_TFWD_b",
+      "name": "single_lens_testing_ARC",
       "parallel": "False",
       "primary_params": {
         "sim_type": "2D",
         "cell_size": {
-          "x": 450,
-          "y": 250,
+          "x": 240,
+          "y": 100,
           "z": 0
         },
-        "resolution": 4,
+        "resolution": 8,
         "smallest_freq": 0.25
       } 
     },
@@ -21,33 +21,40 @@
     "boundary_layers": {
       "boundary": {
         "type": "PML",
-        "size": 2.2,
-        "factor_dpml": 2
+        "size": 2,
+        "factor_dpml": 1
       }
     },
     
     "sources": {
-      "source1": {
-          "type": "ContinuousPlaneWaves",
-          "center_x": -210,
-          "center_y": 0,
-          "center_z": 0,
-          "size_x": 0,
-          "size_y": 250,
-          "size_z": 0,
-          "component": "Ez",
-          "frequecy": 0.5003461427972281,
-          "extra_args": {
-          "angle": 0,
-          "is_integrated": true,
-          "start_time": 0,
-          "end_time": "mp.inf",
-          "rot_axis": "x",
-          "amplitude": 3
-          }
-      }
-  },
-
+        "source1": {
+            "type": "GaussianBeam",
+            "center_x": 78,
+            "center_y": 0,
+            "center_z": 0,
+            "size_x": 0,
+            "size_y": 100,
+            "size_z": 0,
+            "component": "Ez",
+            "frequency": 0.5,
+            "extra_args": {
+              "start_time": 0,
+              "end_time": "mp.inf",
+              "angle": 180,
+              "width": 1.45756792, 
+              "beam_x0": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                  },
+              "beam_E0": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 1
+                  }
+            }
+        }
+    },
     "lenses": {
       "lens1": {
         "name": "L1",
@@ -58,7 +65,7 @@
         "c2": -2.325625,
         "thick": 8,
         "diameter": 50,
-        "x": 236.6,
+        "x": 70,
         "y": 0,
         "AR_left_layers": [0.51],
         "AR_right_layers": [0.51],
@@ -68,21 +75,21 @@
     },
 
     "apertures": {
-          "aperture1": {
+          "lens1_mount": {
             "type": "square",
-            "diameter": 45,
-            "pos_x": 1.6,
-            "thickness": 1,
+            "diameter": 50,
+            "pos_x": -48,
+            "thickness": 2,
             "material": "mp.perfect_electric_conductor",
             "conductivity": "mp.inf",
             "y_centre_offset": [0, 0],
             "y_size_offset": [0, 0]
           },
-           "lens1_mount": {
+          "aperture1": {
             "type": "square",
-            "diameter": 50,
-            "pos_x": 13.6,
-            "thickness": 1,
+            "diameter": 45,
+            "pos_x": -60,
+            "thickness": 2,
             "material": "mp.perfect_electric_conductor",
             "conductivity": "mp.inf",
             "y_centre_offset": [0, 0],
@@ -100,7 +107,7 @@
         "Nfps": 12,
         "downsample_x": 1,
         "downsample_y": 1,
-        "movie_name": "simple_single_lens_AddedComplexities_TFWD_b",
+        "movie_name": "single_lens_testing_ARC",
         "plotting_params": {
                 "Ez2_dB": {
                   "title": "Power (dB)",
@@ -116,7 +123,7 @@
               }
       },
       "epsilon_h5_file": {
-        "filename": "simple_single_lens_AddedComplexities_TFWD_b"
+        "filename": "single_lens_testing_ARC"
       },
       "runtime": {
         "command": "until= 2500"

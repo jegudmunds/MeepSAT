@@ -286,7 +286,7 @@ def check_resolution_and_pml(data,
     if "sources" in data:
         print("Assuming the wavelength of the Source to be the largest wavelength present in the system and doing a sanity check on the PML thickness.")
         for source in data["sources"]:
-            wavelength_meep_source = 1 / data["sources"][source]["frequecy"]  # Wavelength in MEEP unit
+            wavelength_meep_source = 1 / data["sources"][source]["frequency"]  # Wavelength in MEEP unit
             min_pml_thickness = 0.5*wavelength_meep_source # Source: https://meep-hr.readthedocs.io/en/latest/FAQ/#checking-convergence
             if given_pml_thickness < min_pml_thickness:
                 print(f"PML thickness {given_pml_thickness} is less than the minimum required {min_pml_thickness}. Setting PML thickness to {min_pml_thickness}.")
@@ -305,7 +305,7 @@ def check_resolution_and_pml(data,
         print("Highest refractive index provided: ", highest_n)
         if "sources" in data:
             for source in data["sources"]:
-                wavelength_meep_ = 1 / data["sources"][source]["frequecy"]  # Wavelength in MEEP unit
+                wavelength_meep_ = 1 / data["sources"][source]["frequency"]  # Wavelength in MEEP unit
                 wavelength_meep_inside_medium = wavelength_meep_ / highest_n  # Wavelength in MEEP unit inside the medium
                 min_pml_thickness = 0.5*wavelength_meep_inside_medium # Source: https://meep-hr.readthedocs.io/en/latest/FAQ/#checking-convergence
                 if given_pml_thickness < min_pml_thickness:
@@ -317,7 +317,7 @@ def check_resolution_and_pml(data,
     #! Check if the resolution criteria is met or not for the highest refractive index
     if highest_n is not None:
         print("Highest refractive index provided: ", highest_n)
-        wavelength_meep_ = 1 / data["sources"]['source1']["frequecy"]  # Wavelength in MEEP unit
+        wavelength_meep_ = 1 / data["sources"]['source1']["frequency"]  # Wavelength in MEEP unit
         wavelength_meep_inside_medium = wavelength_meep_ / highest_n  # Wavelength in MEEP unit inside the medium
         freq_inside_medium = 1 / wavelength_meep_inside_medium  # Frequency inside the medium
         if data["simulation"]['primary_params']['resolution'] / freq_inside_medium < 8:
@@ -331,9 +331,9 @@ def check_resolution_and_pml(data,
     if "sources" in data:
         print("Assuming the wavelength of the Source to be the largest wavelength present in the system and doing a sanity check on the PML thickness.")
         for source in data["sources"]:
-            if data["simulation"]['primary_params']['resolution'] / data["sources"][source]["frequecy"] < 10:
+            if data["simulation"]['primary_params']['resolution'] / data["sources"][source]["frequency"] < 10:
                 print("Resolution criteria doesn't meet the criteria for the provided source frequency. Increasing the resolution to meet the criteria.")
-                data["simulation"]['primary_params']['resolution'] = int(data["sources"][source]["frequecy"] * 8)
+                data["simulation"]['primary_params']['resolution'] = int(data["sources"][source]["frequency"] * 8)
 
     #! Checking if the resolution criteria is met or not for the smallest frequency
     if smallest_freq is not None:

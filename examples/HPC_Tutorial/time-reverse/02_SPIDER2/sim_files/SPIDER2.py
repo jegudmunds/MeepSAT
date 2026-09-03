@@ -127,7 +127,7 @@ stepfunctions_old.set_field_params(field_params= {'size_x': size_x,
 
 # Runtime parameters
 runtime_params = sim.calculate_runtime_parameters(
-    source_freq=float(data["sources"]["source1"]["frequecy"]),
+    source_freq=float(data["sources"]["source1"]["frequency"]),
     total_time= runtime,
     animation_timestep = data["output"]["animation_options"]["image_every"],
     points_per_period=10,
